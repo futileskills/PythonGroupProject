@@ -6,11 +6,10 @@ import os
 import platform
 
 def check_os():
-    """Return the operating system name."""
     return platform.system()
 
 def show_ip():
-    """Show the IP address based on the operating system."""
+    
     os_type = check_os()
     if os_type == 'Linux':
         os.system("ip addr")
@@ -20,8 +19,7 @@ def show_ip():
         print("Unsupported OS.")
 
 def dump_wifi_passwords():
-    """Dump Wi-Fi passwords based on the operating system."""
-    os_type = check_os()
+    
     if os_type == 'Linux':
         print("Showing saved Wi-Fi configurations (requires sudo):")
         os.system("sudo grep -r '^psk=' /etc/NetworkManager/system-connections/")
@@ -32,7 +30,6 @@ def dump_wifi_passwords():
         print("Unsupported OS for dumping wireless passwords.")
 
 def show_os_info():
-    """Show OS information based on the operating system."""
     os_type = check_os()
     if os_type == 'Linux':
         os.system("uname -a")
@@ -42,7 +39,7 @@ def show_os_info():
         print("Unsupported OS.")
 
 def main():
-    """Main function to run the program."""
+    
     os_type = check_os()
     print(f"Detected OS: {os_type}")
 
