@@ -1,4 +1,4 @@
-Writing pending. need to change a bunch of things -Mike
+# Writing pending. need to change a bunch of things -Mike
 
 # Simple OS Info and Wi-Fi Password Dump Script
 
