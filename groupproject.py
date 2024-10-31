@@ -1,7 +1,5 @@
-# start of group project
-# Writing a program to detect OS, print off System info, dump wireless info, and local ip info
-
-
+# Group Project
+# A simple program to detect the operating system and show system info
 
 import os
 import platform
@@ -9,26 +7,28 @@ import subprocess
 import re
 
 def check_os():
+    """Return the operating system name."""
     return platform.system()
 
 def run_command(command):
+    """Run a shell command and return the output."""
     try:
         result = subprocess.run(command, shell=True, check=True, text=True, capture_output=True)
-        return result.stdout.strip()  # Strip whitespace for cleaner output
+        return result.stdout.strip()  # Clean up the output
     except subprocess.CalledProcessError as e:
         print(f"Error executing command '{command}': {e.stderr}")
         return None
 
 def dump_wireless_passwords():
+    """Dump wireless passwords based on the operating system."""
     os_type = check_os()
     if os_type == 'Linux':
-        print("Wireless password dumping is typically not straightforward on Linux.")
-        print("Here, we show saved Wi-Fi configurations:")
+        print("Showing saved Wi-Fi configurations:")
         output = run_command("sudo grep -r '^psk=' /etc/NetworkManager/system-connections/")
         if output:
             print(output)
         else:
-            print("No wireless passwords found or command failed.")
+            print("No wireless passwords found.")
     elif os_type == 'Windows':
         profiles_output = run_command("netsh wlan show profiles")
         if profiles_output:
@@ -41,22 +41,24 @@ def dump_wireless_passwords():
                     if password:
                         print(f"SSID: {ssid}, Password: {password.group(1)}")
                     else:
-                        print(f"SSID: {ssid}, Password: Not found or not set.")
+                        print(f"SSID: {ssid}, Password: Not found.")
         else:
-            print("No Wi-Fi profiles found or command failed.")
+            print("No Wi-Fi profiles found.")
     else:
         print("Unsupported OS for dumping wireless passwords.")
 
 def main():
+    """Main function to run the program."""
     os_type = check_os()
     print(f"Detected OS: {os_type}")
     
     while True:
         print("\nMenu:")
-        print("1. Show IP address (Linux: ip addr / Windows: ipconfig)")
-        print("2. Show OS information (uname or ver)")
+        print("1. Show IP address")
+        print("2. Show OS information")
         print("3. Dump Wireless Passwords")
-        print("4. Exit")
+        print("4. Run All")
+        print("5. Exit")
 
         choice = input("Select an option: ")
         
@@ -81,10 +83,19 @@ def main():
         elif choice == '3':
             dump_wireless_passwords()
         elif choice == '4':
+            print("Running all commands...")
+            if os_type == 'Linux':
+                print(run_command("ip addr"))
+                print(run_command("uname -a"))
+            elif os_type == 'Windows':
+                print(run_command("ipconfig"))
+                print(run_command("ver"))
+            dump_wireless_passwords()
+        elif choice == '5':
+            print("Exiting the program.")
             break
         else:
             print("Invalid choice. Please try again.")
 
 if __name__ == "__main__":
     main()
-
