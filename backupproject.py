@@ -1,3 +1,8 @@
+# Basic script to keep track of inventory. Dumps scans into inventory.csv and allows search and editing
+# Need to flush out search options. Break into sub menu? 
+# Im fucking tired
+
+
 import csv
 import os
 
