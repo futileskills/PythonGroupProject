@@ -3,6 +3,13 @@
 # Im fucking tired
 
 
+#---------------SOURCES AND DOCS-------------------
+# CSV import docs and "man page" 
+#	https://python-adv-web-apps.readthedocs.io/en/latest/csv.html
+
+
+
+
 import csv
 import os
 
