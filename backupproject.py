@@ -16,7 +16,7 @@ import csv
 import os
 
 def load_inventory(filename):
-    """Load inventory from a CSV file and return as a list of dictionaries."""
+     #Load inventory from a CSV file and return a list
     inventory = []
     if os.path.exists(filename):
         with open(filename, mode='r', newline='') as file:
@@ -26,7 +26,7 @@ def load_inventory(filename):
     return inventory
 
 def save_inventory(filename, inventory):
-    """Save inventory to a CSV file."""
+     # Save inventory to a CSV file
     with open(filename, mode='w', newline='') as file:
         fieldnames = ['Barcode', 'Description', 'Price', 'Owner']
         writer = csv.DictWriter(file, fieldnames=fieldnames)
@@ -34,7 +34,7 @@ def save_inventory(filename, inventory):
         writer.writerows(inventory)
 
 def display_inventory(inventory):
-    """Display the current inventory."""
+     # Display the current inventory.
     if inventory:
         print("Current Inventory:")
         for item in inventory:
@@ -43,12 +43,17 @@ def display_inventory(inventory):
         print("Inventory is empty.")
 
 def add_item(inventory):
-    """Add an item to the inventory with barcode validation."""
+     # Add a item to inventory & barcode verification  
     while True:
         while True:
             barcode = input("Enter the barcode: ")
             if len(barcode) < 5:  # Example validation: barcode must be at least 5 characters
                 print("Barcode is too short. Please enter a valid barcode.")
+                continue
+            
+            # Check to see if barcode is already in use
+            if barcode_exsists(inventory, barcode):
+                print("Barcode already used in database.")
                 continue
             
             # Confirm barcode
@@ -68,31 +73,41 @@ def add_item(inventory):
             break
 
 def edit_item(inventory):
-    """Edit an item in the inventory based on the barcode."""
+     # Edit an item in the inventory based on the barcode 
     barcode = input("Enter the barcode of the item to edit: ")
     for item in inventory:
         if item['Barcode'] == barcode:
             print("Current details:")
             print(f"Description: {item['Description']}, Price: {item['Price']}, Owner: {item['Owner']}")
-            
-            item['Description'] = input("Enter new description (leave blank to keep current): ") or item['Description']
-            item['Price'] = input("Enter new price (leave blank to keep current): ") or item['Price']
-            item['Owner'] = input("Enter new owner's name (leave blank to keep current): ") or item['Owner']
+
+            description = input("Enter new description (leave blank to keep current): ")
+            price_input = input("Enter new price (leave blank to keep current): ")
+            owner = input("Enter new owner's name (leave blank to keep current): ")
+
+            # Ensure the barcode is still unique
+            while True:
+                new_barcode = input(f"Enter new barcode (leave blank to keep current: {barcode}): ")
+                if not new_barcode:
+                    new_barcode = barcode  # Keep the current barcode if the user leaves it blank
+                # Check if the new barcode is unique
+                if new_barcode != barcode and barcode_exists(inventory, new_barcode, exclude_barcode=barcode):
+                    print("Barcode already exists. Please enter a unique barcode.")
+                    continue
+                break
+
+            # Apply changes
+            item['Barcode'] = new_barcode
+            item['Description'] = description or item['Description']
+            item['Price'] = float(price_input) if price_input else item['Price']
+            item['Owner'] = owner or item['Owner']
+
             print("Item updated.")
             return
     print("Item not found.")
 
-def search_item(inventory):
-    """Search for an item by barcode."""
-    barcode = input("Enter the barcode to search: ")
-    for item in inventory:
-        if item['Barcode'] == barcode:
-            print(f"Found item - Barcode: {item['Barcode']}, Description: {item['Description']}, Price: {item['Price']}, Owner: {item['Owner']}")
-            return
-    print("Item not found.")
 
 def main_menu():
-    """Display the main menu and handle user choices."""
+     # Display the main menu 
     filename = 'inventory.csv'
     inventory = load_inventory(filename)
 
