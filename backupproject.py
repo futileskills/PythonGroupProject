@@ -111,6 +111,16 @@ def main_menu():
     filename = 'inventory.csv'
     inventory = load_inventory(filename)
 
+    # Display the "Main Menu" ASCII art manually
+    print("""
+ __  __    _    ___ _   _   __  __ _____ _   _ _   _ 
+|  \/  |  / \  |_ _| \ | | |  \/  | ____| \ | | | | |
+| |\/| | / _ \  | ||  \| | | |\/| |  _| |  \| | | | |
+| |  | |/ ___ \ | || |\  | | |  | | |___| |\  | |_| |
+|_|  |_/_/   \_\___|_| \_| |_|  |_|_____|_| \_|\___/ 
+    """)
+
+
     while True:
         print("\nMain Menu:")
         print("1. View Inventory")
