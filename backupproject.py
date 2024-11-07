@@ -71,6 +71,16 @@ def add_item(inventory):
         if input("Add another item? (y/n): ").lower() != 'y':
             break
 
+def search_item(inventory):
+    """Search for an item by barcode."""
+    barcode = input("Enter the barcode to search: ")
+    for item in inventory:
+        if item['Barcode'] == barcode:
+            print(f"Found item - Barcode: {item['Barcode']}, Description: {item['Description']}, Price: {item['Price']}, Owner: {item['Owner']}")
+            return
+    print("Item not found.")
+
+
 def edit_item(inventory):
     # Edit an item in the inventory based on the barcode
     barcode = input("Enter the barcode of the item to edit: ")
