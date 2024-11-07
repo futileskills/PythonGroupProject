@@ -42,7 +42,7 @@ def display_inventory(inventory):
         print("Inventory is empty.")
 
 def add_item(inventory):
-    # Add an item to inventory & barcode verification  
+    # Add an item to inventory & barcode verification
     while True:
         while True:
             barcode = input("Enter the barcode: ")
@@ -72,7 +72,7 @@ def add_item(inventory):
             break
 
 def edit_item(inventory):
-    # Edit an item in the inventory based on the barcode 
+    # Edit an item in the inventory based on the barcode
     barcode = input("Enter the barcode of the item to edit: ")
     for item in inventory:
         if item['Barcode'] == barcode:
@@ -111,7 +111,7 @@ def barcode_exists(inventory, barcode, exclude_barcode=None):
     return False
 
 def main_menu():
-    # Display the main menu 
+    # Display the main menu
     filename = 'inventory.csv'
     inventory = load_inventory(filename)
 
