@@ -11,12 +11,11 @@
 
 
 
-
 import csv
 import os
 
 def load_inventory(filename):
-     #Load inventory from a CSV file and return a list
+    # Load inventory from a CSV file and return a list
     inventory = []
     if os.path.exists(filename):
         with open(filename, mode='r', newline='') as file:
@@ -26,7 +25,7 @@ def load_inventory(filename):
     return inventory
 
 def save_inventory(filename, inventory):
-     # Save inventory to a CSV file
+    # Save inventory to a CSV file
     with open(filename, mode='w', newline='') as file:
         fieldnames = ['Barcode', 'Description', 'Price', 'Owner']
         writer = csv.DictWriter(file, fieldnames=fieldnames)
@@ -34,7 +33,7 @@ def save_inventory(filename, inventory):
         writer.writerows(inventory)
 
 def display_inventory(inventory):
-     # Display the current inventory.
+    # Display the current inventory.
     if inventory:
         print("Current Inventory:")
         for item in inventory:
@@ -43,19 +42,19 @@ def display_inventory(inventory):
         print("Inventory is empty.")
 
 def add_item(inventory):
-     # Add a item to inventory & barcode verification  
+    # Add an item to inventory & barcode verification  
     while True:
         while True:
             barcode = input("Enter the barcode: ")
             if len(barcode) < 5:  # Example validation: barcode must be at least 5 characters
                 print("Barcode is too short. Please enter a valid barcode.")
                 continue
-            
-            # Check to see if barcode is already in use
-            if barcode_exsists(inventory, barcode):
+
+            # Check if barcode exists
+            if barcode_exists(inventory, barcode):
                 print("Barcode already used in database.")
                 continue
-            
+
             # Confirm barcode
             confirm = input(f"You entered barcode '{barcode}'. Is this correct? (y/n): ").lower()
             if confirm == 'y':
@@ -66,14 +65,14 @@ def add_item(inventory):
         description = input("Enter the description: ")
         price = input("Enter the price: ")
         owner = input("Enter the owner's name: ")
-        
+
         inventory.append({'Barcode': barcode, 'Description': description, 'Price': price, 'Owner': owner})
-        
+
         if input("Add another item? (y/n): ").lower() != 'y':
             break
 
 def edit_item(inventory):
-     # Edit an item in the inventory based on the barcode 
+    # Edit an item in the inventory based on the barcode 
     barcode = input("Enter the barcode of the item to edit: ")
     for item in inventory:
         if item['Barcode'] == barcode:
@@ -89,7 +88,6 @@ def edit_item(inventory):
                 new_barcode = input(f"Enter new barcode (leave blank to keep current: {barcode}): ")
                 if not new_barcode:
                     new_barcode = barcode  # Keep the current barcode if the user leaves it blank
-                # Check if the new barcode is unique
                 if new_barcode != barcode and barcode_exists(inventory, new_barcode, exclude_barcode=barcode):
                     print("Barcode already exists. Please enter a unique barcode.")
                     continue
@@ -105,9 +103,15 @@ def edit_item(inventory):
             return
     print("Item not found.")
 
+# Barcode existence check function
+def barcode_exists(inventory, barcode, exclude_barcode=None):
+    for item in inventory:
+        if item['Barcode'] == barcode and barcode != exclude_barcode:
+            return True
+    return False
 
 def main_menu():
-     # Display the main menu 
+    # Display the main menu 
     filename = 'inventory.csv'
     inventory = load_inventory(filename)
 
@@ -141,6 +145,14 @@ def main_menu():
         elif choice == '5':
             save_inventory(filename, inventory)
             print("Inventory saved. Exiting.")
+            print("""
+              ____  ___   ___  ____  ______   _______ 
+             / ___|/ _ \ / _ \|  _ \| __ ) \ / / ____|
+            | |  _| | | | | | | | | |  _  \\ V /|  _|  
+            | |_| | |_| | |_| | |_| | |_) || | | |___ 
+             \____|\___/ \___/|____/|____/ |_| |_____|
+            """)
+
             break
         else:
             print("Invalid choice. Please try again.")
