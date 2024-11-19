@@ -9,7 +9,7 @@
 #	https://python-adv-web-apps.readthedocs.io/en/latest/csv.html
 
 # Full disclaimer: I tried to use figlet to make the assci art but spacing was a nightmare so I used chatgpt to print it out for me so the spacing was correct/ not scrambled
-
+# Also mainly because I did not want to fight with importing it or having issues getting it to run on others /your computer
 
 
 import csv
