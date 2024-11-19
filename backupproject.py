@@ -2,7 +2,7 @@
 # Need to flush out search options. Break into sub menu?
 # Im fucking tired
 # Need to add checking for reused barcodes. throw error and loop to try again
-
+#If yall have any questions just add it here or in the questions.txt file. Ill get the notification
 
 
 #---------------SOURCES AND DOCS-------------------
