@@ -1,13 +1,14 @@
 # Basic script to keep track of inventory. Dumps scans into inventory.csv and allows search and editing
 # Need to flush out search options. Break into sub menu?
-# Im fucking tired
 # Need to add checking for reused barcodes. throw error and loop to try again
-#If yall have any questions just add it here or in the questions.txt file. Ill get the notification
+# If yall have any questions just add it here or in the questions.txt file. Ill get the notification
 
 
 #---------------SOURCES AND DOCS-------------------
 # CSV import docs and "man page"
 #	https://python-adv-web-apps.readthedocs.io/en/latest/csv.html
+
+# Full disclaimer: I tried to use figlet to make the assci art but spacing was a nightmare so I used chatgpt to print it out for me so the spacing was correct/ not scrambled
 
 
 
