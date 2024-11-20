@@ -11,6 +11,11 @@
 # Full disclaimer: I tried to use figlet to make the assci art but spacing was a nightmare so I used chatgpt to print it out for me so the spacing was correct/ not scrambled
 # Also mainly because I did not want to fight with importing it or having issues getting it to run on others /your computer
 
+#----------TODO LIST ----------
+# Need to add a way to add lines or colums to the csv file with out it breaking.
+# Is there a way to just edit the csv file directly without this program having a bitch fit for new colums.
+
+
 
 import csv
 import os
