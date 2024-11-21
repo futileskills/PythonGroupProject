@@ -1,8 +1,5 @@
 # Basic script to keep track of inventory. Dumps scans into inventory.csv and allows search and editing
 # Need to flush out search options. Break into sub menu?
-# Need to add checking for reused barcodes. throw error and loop to try again
-# If yall have any questions just add it here or in the questions.txt file. Ill get the notification
-
 
 #---------------SOURCES AND DOCS-------------------
 # CSV import docs and "man page"
@@ -12,7 +9,7 @@
 #---------- TODO LIST ----------
 # Need to add a way to add lines or columns to the csv file without it breaking.
 # Is there a way to just edit the csv file directly without this program having a bitch fit for new columns.
-# Need to add a way to append the csv file when editing 
+# Need to add a way to append the csv file when editing
 
 
 import csv
