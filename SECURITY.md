@@ -1,3 +1,4 @@
-If you are looking for security info for this script. I dont have have one. 
-Just made this to get more familiar with github.
+## This repo does not require any network perrmisions.
+## There are no planned security patches unless someone points something out
 
+# Program is free to use and edit. 
