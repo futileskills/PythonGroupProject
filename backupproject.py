@@ -9,16 +9,16 @@
 #	https://python-adv-web-apps.readthedocs.io/en/latest/csv.html
 
 
-
 #---------- TODO LIST ----------
-# Need to add a way to add lines or colums to the csv file with out it breaking.
-# Is there a way to just edit the csv file directly without this program having a bitch fit for new colums.
+# Need to add a way to add lines or columns to the csv file without it breaking.
+# Is there a way to just edit the csv file directly without this program having a bitch fit for new columns.
 # Need to add a delete option to the menu
 # Need to add a way to append the csv file when editing 
 
 
 import csv
 import os
+
 
 def load_inventory(filename):
     # Load inventory from a CSV file and return a list
@@ -30,6 +30,7 @@ def load_inventory(filename):
                 inventory.append(row)
     return inventory
 
+
 def save_inventory(filename, inventory):
     # Save inventory to a CSV file
     with open(filename, mode='w', newline='') as file:
@@ -37,6 +38,7 @@ def save_inventory(filename, inventory):
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(inventory)
+
 
 def display_inventory(inventory):
     # Display the current inventory.
@@ -46,6 +48,7 @@ def display_inventory(inventory):
             print(f"Barcode: {item['Barcode']}, Description: {item['Description']}, Price: {item['Price']}, Owner: {item['Owner']}")
     else:
         print("Inventory is empty.")
+
 
 def add_item(inventory):
     # Add an item to inventory & barcode verification
@@ -76,6 +79,7 @@ def add_item(inventory):
 
         if input("Add another item? (y/n): ").lower() != 'y':
             break
+
 
 def search_item(inventory):
     """Search for an item by barcode."""
@@ -119,12 +123,26 @@ def edit_item(inventory):
             return
     print("Item not found.")
 
+
+def delete_item(inventory):
+    # Delete an item from inventory based on barcode
+    barcode = input("Enter the barcode of the item to delete: ")
+    for item in inventory:
+        if item['Barcode'] == barcode:
+            inventory.remove(item)  # Remove from inventory
+            print(f"Item with barcode {barcode} deleted.")
+            save_inventory('inventory.csv', inventory)  # Save the updated inventory back to the CSV
+            return
+    print("Item not found.")
+
+
 # Barcode existence check function
 def barcode_exists(inventory, barcode, exclude_barcode=None):
     for item in inventory:
         if item['Barcode'] == barcode and barcode != exclude_barcode:
             return True
     return False
+
 
 def main_menu():
     # Display the main menu
@@ -140,14 +158,14 @@ def main_menu():
 |_|  |_/_/   \_\___|_| \_| |_|  |_|_____|_| \_|\___/ 
     """)
 
-
     while True:
         print("\nMain Menu:")
         print("1. View Inventory")
         print("2. Add Item")
         print("3. Edit Item")
         print("4. Search Item")
-        print("5. Save and Exit")
+        print("5. Delete Item")
+        print("6. Save and Exit")
         choice = input("Choose an option: ")
 
         if choice == '1':
@@ -159,6 +177,8 @@ def main_menu():
         elif choice == '4':
             search_item(inventory)
         elif choice == '5':
+            delete_item(inventory)
+        elif choice == '6':
             save_inventory(filename, inventory)
             print("Inventory saved. Exiting.")
             print("""
@@ -172,6 +192,7 @@ def main_menu():
             break
         else:
             print("Invalid choice. Please try again.")
+
 
 if __name__ == "__main__":
     main_menu()
