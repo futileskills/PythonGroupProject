@@ -12,7 +12,6 @@
 #---------- TODO LIST ----------
 # Need to add a way to add lines or columns to the csv file without it breaking.
 # Is there a way to just edit the csv file directly without this program having a bitch fit for new columns.
-# Need to add a delete option to the menu
 # Need to add a way to append the csv file when editing 
 
 
