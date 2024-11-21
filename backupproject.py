@@ -9,9 +9,9 @@
 #	https://python-adv-web-apps.readthedocs.io/en/latest/csv.html
 
 # Full disclaimer: I tried to use figlet to make the assci art but spacing was a nightmare so I used chatgpt to print it out for me so the spacing was correct/ not scrambled
-# Also mainly because I did not want to fight with importing it or having issues getting it to run on others /your computer
+# Also mainly because I did not want to fight with importing it (figlet) or having issues getting it to run on others /your computer
 
-#----------TODO LIST ----------
+#---------- TODO LIST ----------
 # Need to add a way to add lines or colums to the csv file with out it breaking.
 # Is there a way to just edit the csv file directly without this program having a bitch fit for new colums.
 
@@ -52,8 +52,8 @@ def add_item(inventory):
     while True:
         while True:
             barcode = input("Enter the barcode: ")
-            if len(barcode) < 5:  # Example validation: barcode must be at least 5 characters
-                print("Barcode is too short. Please enter a valid barcode.")
+            if len(barcode) < 5:  # Barcode must be at least 5 characters
+                print("Barcode is too short. Must be at least 5 characters long.")
                 continue
 
             # Check if barcode exists
