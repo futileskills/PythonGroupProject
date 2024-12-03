@@ -25,7 +25,7 @@ This Inventory Management System is a Python-based application designed to help 
    ```bash
    git clone https://github.com/futileskills/PythonGroupProject.git
    cd PythonGroupProject
-
+   python3 inventory_management.py
 
 ## File structure 
 
