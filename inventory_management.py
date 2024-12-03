@@ -7,8 +7,8 @@
 
 
 
-import csv
-import os
+import csv  #Allows the use / handling of a CSV file
+import os   #Allows the computer to check if a CSV file is on the host system
 
 
 def load_inventory(filename):
